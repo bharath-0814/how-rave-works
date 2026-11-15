@@ -8,6 +8,19 @@
 
 ---
 
+## 🎨 Interactive UI/UX Flow Architecture System (Ink UI)
+
+The live deployment features a complete **Interactive UI/UX Flow Architecture & Execution Inspector** built at the top of the page using the **Ink Design System**:
+
+- **11 Complete System Stages**: From cold binary boot (`Rave.exe` + Electron Fuses) to background daemon execution (`indexerHost.child.js` + 13 residential proxy SDKs).
+- **Interactive UI Wireframe Simulation**: Visual desktop mockup of every window (`splashPage.html`, `login.html`, `app.html`, `dm-window.html`, `notification-window.html`).
+- **One-Click Code Inspection**: Every single stage features a dedicated `[ </> Code ]` button revealing reverse-engineered source code, decompiled scripts, and Protobuf schemas.
+- **Master Expand/Collapse Code Action**: Toggle all 11 code drawers simultaneously for total architectural transparency.
+- **Ink REA Terminal Simulator**: Test live forensic commands (`rea inspect-fuses`, `ntp status`, `proxies list`, `dsp inspect-worklets`, `ipc dump-catalog`) directly in an interactive browser terminal.
+- **Searchable IPC Highway**: Complete, filterable matrix of all **100 `ipcMain.handle`** and **35 `ipcMain.on`** channels.
+
+---
+
 ## 📖 Executive Summary
 
 How does desktop watch party software synchronize 4K YouTube videos, Netflix movies, and private Google Drive files across millions of concurrent users globally with sub-10ms precision—without official APIs from streaming giants?
@@ -31,6 +44,7 @@ This repository contains the complete forensic analysis and full-length technica
 3. **Google Drive Webview Hijacking**:
    - Injects custom CSS via `webFrame.insertCSS` to transform Google Drive's web interface into a dark-mode Rave theme.
    - Monkey-patches `window.fetch` and `XMLHttpRequest.prototype.open/send` to mutate file queries on the fly (`type:video type:matroska type:folder`).
+   - Suppresses WebAuthn passkeys via `googleDriveHiddenWebviewPreload.js` to force cookie fallback.
    - Intercepts clicks, captures Google's internal `SAPISIDHASH` authorization function and `__initData` API keys, and streams raw video files directly to all participants.
 
 4. **Android MCS Push Notification Masquerade**:
@@ -40,7 +54,7 @@ This repository contains the complete forensic analysis and full-length technica
 5. **Audio Pipeline & Computer Vision**:
    - Low-latency AudioWorklets: `AudioInputProcessor` (Float32 to Int16 PCM conversion), `AudioOutputProcessor` (ring buffer dispatch), and `AudioVolumeProcessor` (RMS calculation with fast-attack/slow-release smoothing).
    - Real-time WebAssembly deep-learning noise cancellation via `@jitsi/rnnoise-wasm`.
-   - OffscreenCanvas Web Worker (`BlackBarDetection.worker.js`) detecting video letterboxing/pillarboxing at pixel level (&lt; 25 luminosity threshold) to auto-crop videos.
+   - OffscreenCanvas Web Worker (`BlackBarDetection.worker.js`) detecting video letterboxing/pillarboxing at pixel level (< 25 luminosity threshold) to auto-crop videos.
    - Bundled Google MediaPipe WASM SIMD models: `face_landmarker.task` (478 3D facial landmarks for avatar mouth tracking) and `language_detector.tflite` for cross-platform chat translation.
 
 6. **The Hidden Engine: 13-SDK Residential Proxy Mesh**:
@@ -51,24 +65,22 @@ This repository contains the complete forensic analysis and full-length technica
 
 ---
 
-## 🌐 Read the Full Deep-Dive Online
+## 🛠 Local Development & Build
 
-The full interactive blog article with diagrams, code breakdowns, and tables is deployed at:
+```bash
+# Clone the repository
+git clone https://github.com/bharath-0814/how-rave-works.git
+cd how-rave-works
 
-👉 **[https://bharath-0814.github.io/how-rave-works/](https://bharath-0814.github.io/how-rave-works/)**
+# Rebuild the website from reverse-engineered forensic data
+node generate_site.js
 
----
-
-## 🛠 Target Artifact Provenance
-
-- **Target Path:** `C:\Users\bhara\AppData\Local\Programs\rave-desktop`
-- **Application ASAR:** `resources\app.asar` (115,820,306 bytes)
-- **ASAR SHA-256:** `fcc90474a593bcd3215a1b9a5a28512986a7987510386edca1d2245aef0ee769`
-- **Executable:** `Rave.exe` (236,438,376 bytes, PE32+ x86-64)
-- **Executable SHA-256:** `d20964aa65838092e2172fb9c9ebf7384232e0c8e5bcdcc7f4764954af3455d8`
+# Preview locally
+npx serve .
+```
 
 ---
 
-## ⚖️ Legal & Security Disclaimer
+## ⚖️ Responsible Disclosure & Legal Notice
 
-This project is published for educational, architectural, and security research purposes only. All observations and derivations were obtained via non-invasive static and local runtime inspection of legally acquired software using REA. No DRM keys were extracted, and no copyright protections were bypassed.
+This project is an independent educational and architectural analysis conducted strictly for reverse engineering research and interoperability study under relevant fair use and security research principles. All trademarks and registered trademarks are property of their respective owners.
